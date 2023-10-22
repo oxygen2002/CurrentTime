@@ -1,0 +1,48 @@
+<body>
+  <link rel="stylesheet" href="時計.css">
+  <h3><span id="real-date"></span></h3>
+  <img src ="イラスト/mori.png">
+  <p><span id="real-time"></span></p>
+  
+    <script type="text/javascript">
+  function Time() 
+  {
+     //現在時刻(時：分：秒)を取得
+     var realTime = new Date();
+     var hour = realTime.getHours();
+     var minutes  = realTime.getMinutes();
+     var seconds  = realTime.getSeconds();
+     if(hour < 10)
+      {
+       var hour = "0" + hour;
+      }
+      if(minutes < 10)
+      {
+       var minutes = "0" + minutes;
+      }
+      if(seconds < 10)
+      {
+       var seconds = "0" + seconds;
+      }
+     var text = hour + ":" + minutes + ":" + seconds;
+     document.getElementById("real-time").innerHTML = text;
+     //現在日付(年：月：日)を取得
+     var year = realTime.getFullYear();
+     var month = realTime.getMonth()+1;
+     var date= realTime.getDate();
+     //曜日を取得
+       function getWeekDay1(date)
+        {
+         // 曜日配列
+         var weekDay = ["日", "月", "火", "水", "木", "金", "土"];
+         return weekDay[date.getDay()];
+        }
+     var dt = new Date(year, month, date - 3);
+     var strWeekDate = getWeekDay1(dt);
+     //var strDate= year + "年" + month + "月" + date + "日";
+     var strDate= year + "年" + month + "月" + date + "日" + "(" + strWeekDate + ")";
+     document.getElementById("real-date").innerHTML = strDate;
+  }
+  setInterval('Time()',1000);
+    </script>
+    </body>
